@@ -5,7 +5,6 @@
 const debounce = (fn, delay = 200) => {
 
     let timeout = null;
-    const curTime = new Date().getTime();
 
     return function(...args) {
         const fnCall = () => {
