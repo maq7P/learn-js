@@ -8,6 +8,10 @@
 // input: [[1,3], [2,6], [8,10], [15,18]]
 // output: [[1,6], [8,10], [15,18]]
 
+
+// memory: O(logn) because sort inplace; if will sort with copy -> O(n)
+// speed: O(n * log(n))
+
 const case1 = [[1,3], [2,6], [8,10], [15,18]];
 const case2 = [[1,5], [2, 7]];
 const case3 = [[1,3], [5, 7]];
@@ -17,7 +21,7 @@ const case5 = [[11,12]];
 const mergeIntervals = (intervals) => {
     if(intervals.length < 2) return intervals;
 
-    intervals.sort(([a, ], [b, ]) => a - b)
+    intervals.sort(([a, ], [b, ]) => a - b);
 
     const mergedInterval = [intervals[0]];
 
