@@ -26,17 +26,50 @@ const isPrimitive = (el) => typeof el === 'string'
 || el === undefined;
 
 //DFS (можно с помощью стека также)
-const logDFS = (obj) => {
+//Если объект очень глубокий , мы можем заполнить стек и возникенет stack overfllow
+const logDFSRecursive = (obj) => {
     if(isPrimitive(obj)){
         res1.push(obj);
     } else {
         for(let key in obj){
             if(!obj.hasOwnProperty(key)) continue;
-            logDFS(obj[key]);
+            logDFSRecursive(obj[key]);
         }
     }
 
 }
 
-console.log(logDFS(obj));
+console.log(logDFSRecursive(obj));
 console.log(res1);
+
+//DFS с помощью стека
+//Стек находится в куче, предоставляемой Array, что является динмисческой памятью 
+//    => не возникнет проблемы stask overfllow
+const logDFSStask = (obj) => {
+    const stack = [intoIter(obj)];
+    const res = [];
+
+    while(stack.length > 0){
+        const iter = stack.pop();
+
+        for(let val of iter){
+            if(isPrimitive(val)){
+                res.push(val);
+
+            } else {
+                stack.push(iter);
+                stack.push(intoIter(val));
+                break;
+            }
+        }
+
+    }
+
+    function intoIter(obj){
+        return Object.values(obj).values()
+    }
+
+    return res;
+}
+
+console.log(logDFSStask(obj));
