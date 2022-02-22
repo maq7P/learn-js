@@ -43,9 +43,12 @@ const tappingRainWater = (pillars) => {
 
 console.log(tappingRainWater(pillars));
 
-// Решение за константное время алгоритмом с двумя указателями
-
+// Решение за константой по памяти; алгоритмом с двумя указателями
+//complexity time O(N)
+//complexity memory O(1)
 const pil2 = [4,2,0,3,2,5]; //9
+
+
 const tappingRainWater2 = (pillars) => {
     const pillarsLen = pillars.length - 1;
     
