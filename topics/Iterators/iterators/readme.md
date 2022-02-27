@@ -47,6 +47,7 @@ for(const el of a[Symbol.iterator]()){
 
 ### Реализация конечного автомата
 ##### Если итерироваться с по класическому ассоциативному массиву (объекту), то в JS в нём нужно реалищовывать собственный итератор.
+> Конечный автомат - это некторое математическое устройство, у которого есть вход и выход, некоторое состояние которое меняется , в зависимости от предыдущего состояния.
 
 > error: Uncaught TypeError: {(intermediate value)} is not iterable
 
@@ -78,36 +79,57 @@ for(const el of a[Symbol.iterator]()){
 ```javascript
 
 let range = {
-  from: 1,
-  to: 5,
+	from: 1,
+	to: 5,
 
-  [Symbol.iterator]() {
-    this.current = this.from;
-    return this;
-  },
+	[Symbol.iterator]() {
+		this.current = this.from;
+		return this;
+	},
 
-  next() {
+	next() {
+		// ...она возвращает объект итератора:
+		// 2. Далее, for..of работает только с этим итератором, запрашивая у него новые значения
+		return {
+			current: this.from,
+			last: this.to,
 
-  // ...она возвращает объект итератора:
-  // 2. Далее, for..of работает только с этим итератором, запрашивая у него новые значения
-  return {
-    current: this.from,
-    last: this.to,
-
-    // 3. next() вызывается на каждой итерации цикла for..of
-    next() {
-      // 4. он должен вернуть значение в виде объекта {done:.., value :...}
-      if (this.current <= this.last) {
-        return { done: false, value: this.current++ };
-      } else {
-        return { done: true };
-      }
-    }
-  };
-};
+			// 3. next() вызывается на каждой итерации цикла for..of
+			next() {
+				// 4. он должен вернуть значение в виде объекта {done:.., value :...}
+				if (this.current <= this.last) {
+					return { done: false, value: this.current++ };
+				} else {
+					return { done: true };
+				}
+			}
+		};
+  	}
+}
 
 // теперь работает!
 for (let num of range) {
   console.log(num); // 1, затем 2, 3, 4, 5
 }
+```
+
+### Реализация конечного автомата для (пример лампы)
+```javascript
+function *Switcher(){
+	let state = 0;
+
+	while(true){
+		++state === 5 && (state = 0)
+
+		yield state
+	}
+}
+
+const switcher = Switcher();
+switcher.next() // {value: 1, done: false}
+switcher.next() // {value: 2, done: false}
+switcher.next() // {value: 3, done: false}
+switcher.next() // {value: 4, done: false}
+switcher.next() // {value: 5, done: false}
+switcher.next() // {value: 0, done: false}
 ```
