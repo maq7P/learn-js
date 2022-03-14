@@ -20,6 +20,7 @@
 
 // compexity speed: O(n*m)
 // complexity memory: O(1)
+
 const fillMatrixZero = (matrix) => {
     if(!(matrix[0] instanceof Array)){
         if(matrix.includes(0)){

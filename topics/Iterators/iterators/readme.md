@@ -116,13 +116,19 @@ for (let num of range) {
 ### Реализация конечного автомата для (пример лампы)
 ```javascript
 function *Switcher(){
-	let state = 0;
+	try {
+		let state = 0;
 
-	while(true){
-		++state === 5 && (state = 0)
+		while(true){
+			++state === 5 && (state = 0)
 
-		yield state
-	}
+			state = yield state
+		}
+	} catch(e){
+		if(e === 'boom'){
+			//какая-то логика
+    }
+  }
 }
 
 const switcher = Switcher();
@@ -132,4 +138,9 @@ switcher.next() // {value: 3, done: false}
 switcher.next() // {value: 4, done: false}
 switcher.next() // {value: 5, done: false}
 switcher.next() // {value: 0, done: false}
+switcher.next(3) // {value: 3, done: false} //можно пробрасывать и yeild будет читать то, что в next
+
+switcher.throw('boom');
 ```
+
+

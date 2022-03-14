@@ -18,7 +18,7 @@ const singleNumber = (arr) => {
         hash[key] === 1 && (result = key);
     }
 
-    console.log(result);
+    return result;
 }
 
 singleNumber([4,1,2,2,1]);
@@ -45,11 +45,10 @@ const singleNumber2 = (nums) => {
 }   
 
 console.log(singleNumber2([4,1,2,2,1]));
+
 // time complexity: O(n)
 // memory complexity: O(n)
-
 const singleNumber3 = (nums) => 
-Array.from(new Set(nums))
-    .reduce((acc, el) => acc + el, 0) * 2 - nums.reduce((acc, el) => acc + el, 0)
+    Array.from(new Set(nums)).reduce((acc, el) => acc + el, 0) * 2 - nums.reduce((acc, el) => acc + el, 0)
 
 console.log(singleNumber3([4,1,2,2,1]))

@@ -9,14 +9,20 @@ const binarySearch = (nums, target) => {
     let right = nums.length - 1
 
     while(left <= right){
-        mid = (left + right) / 2
+        mid = Math.round((right-left) / 2) + left;
 
-        if(num[mid] === target){
-            return num[mid]
+        if(nums[mid] === target){
+            return nums[mid]
         }
 
-        if(num[mid] > target){
-            left = mid
+        if(nums[mid] > target){
+            left = mid + 1;
+        }
+
+        if(nums[mid] < target){
+            right = mid - 1;
         }
     }
+
+    return -1
 }
