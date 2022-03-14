@@ -3,7 +3,6 @@
 итеррируемых стркутур данных
 
 ```javascript
-
 class Iter {
     constructor(iter){
         this.iter = iter
@@ -70,4 +69,30 @@ const iter = new Iter([1,2,3,4].filter(el => el % 2).map(el => el % 10).take(2).
 for(const [i,el] of iter){
     console.log(el);
 }
+```
+
+# Реализация рандомности с помощью итератора
+
+```javascript
+function* getRandom(){
+	while(true){
+		yield Math.random();
+  }
+}
+
+let rand;
+
+async function updateRandom(generator){
+	const iter = generator();
+	
+	for(const val of iter){
+		rand = val;
+		await new Promise((e) => setTimeout(e), 20000)
+  }
+}
+
+// Каждые 20сек в rand записывается новое значение;
+// Промис никогда не заризолвится;
+// Итератор не завершится
+updateRandom(getRandom);
 ```
