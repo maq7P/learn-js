@@ -186,4 +186,22 @@ executer(fetchSomething())
     .catch()
     .finally()
 ```
+### Асинхронный forEach` с помощью генератора
+```javascript
+function* _forEach(iter, fn){
+	let
+      time = Date.now();
+	for (const el of iter) {
+		fn(el);
+		
+		if(Date.now() - time > 300) {
+			yield;
+			time = Date.now();
+    }
+  }
+}
+//Тот же executer только в ф-ией sleep внутри
+const forEach = (...args) => executer(_forEach(...args));
 
+forEach(new Array(1e8), console.log).then() 
+```
