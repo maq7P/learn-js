@@ -44,3 +44,18 @@ DELETE FROM users WHERE id > 4;
     DELETE FROM users;
     TRUNCATE users;
 ```
+
+###Индексы
+Позволяют выполнять различные SQL команды намного быстрее, нежели без добавления индексов
+Везде расставлять не нужно. Кейс - поиск по сайту названию, описанию (Добавляем индексы для названия и описания)
+```mysql
+CREATE TABLE users( id INT NOT NULL AUTO_INCREMENT, name VARCHAR(30), email VARCHAR(30), info TEXT, birth DATE, PRIMARY KEY(id));
+
+#Создание индекса
+CREATE INDEX SearchByName ON users(name);
+# Благодаря индексу следующий запрос выполнится быстрее
+SELECT name FROM users;
+
+#Удаление индекса
+DROP INDEX SearchByName ON users;
+```
