@@ -1,6 +1,6 @@
-#SQL
+# SQL
 
-###Основные команды
+### Основные команды
 
 ```mysql
 # Создание кластера
@@ -18,7 +18,8 @@ ALTER TABLE users CHANGE birth birth DATE NOT NULL;
 
 #ВЫбор всё из таблицы
 SELECT * FROM users;
-#ВЫбор чего-то конкретного. Тут можно прописать вместо условия BETWEEN 6 AND 7; IN(1,2,3) - выбыорка данных вместо условий сравнения 
+#ВЫбор чего-то конкретного. Тут можно прописать вместо условия BETWEEN 6 AND 7; 
+# IN(1,2,3) - выбыорка данных вместо условий сравнения;
 SELECT `id`, `name` FROM users WHERE id > 5 AND id < 8;
 #Выбор уникальных данных 
 SELECT DISTINCT name FROM users;
@@ -45,7 +46,7 @@ DELETE FROM users WHERE id > 4;
     TRUNCATE users;
 ```
 
-###Индексы
+### Индексы
 Позволяют выполнять различные SQL команды намного быстрее, нежели без добавления индексов
 Везде расставлять не нужно. Кейс - поиск по сайту названию, описанию (Добавляем индексы для названия и описания)
 ```mysql
@@ -56,6 +57,63 @@ CREATE INDEX SearchByName ON users(name);
 # Благодаря индексу следующий запрос выполнится быстрее
 SELECT name FROM users;
 
-#Удаление индекса
+# Удаление индекса
 DROP INDEX SearchByName ON users;
 ```
+
+### Создание двух таблиц и объединения
+```mysql
+CREATE TABLE users( 
+    id INT NOT NULL AUTO_INCREMENT, 
+    name VARCHAR(30), 
+    email VARCHAR(30), 
+    info TEXT, 
+    birth DATE, 
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE shop(
+   id INT NOT NULL AUTO_INCREMENT,
+   title VARCHAR(30),
+   price INT,
+   PRIMARY KEY(id)
+);
+
+CREATE TABLE orders(
+  id INT NOT NULL AUTO_INCREMENT,
+  orderNumber INT,
+  shopId INT,
+  userId INT,
+  date_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY(id),
+  FOREIGN KEY (shopId) REFERENCES shop,
+  FOREIGN KEY (userId) REFERENCES users;
+);
+
+#Прописание значений 
+INSERT INTO shop (title, price) 
+    VALUES ('iPhone', 300), ('TV', 320), ('PS5', 320), ('Mac', 400), ('Fridge', 200);
+
+INSERT INTO orders (orderNumber, shopId, userId) 
+    VALUES (1, 2, 4), (2, 1, 3), (3, 2, 3);
+
+# INNER JOIN: объединение таблицы пользователей с таблицей заказов и таблицей товаров
+SELECT shop.title, users.name, users.email FROM users
+    INNER JOIN orders ON users.id = orders.userId
+    INNER JOIN shop ON shop.id = orders.shopId
+    ORDER BY DESC;
+
+# LEFT JOIN: объединение таблицы пользователей с таблицей заказов
+# Отличие от Inner join - будут взяты все эелементы из таблицы пользоватлей , только без данных (если нет объединения)
+SELECT users.name, orders.orderNumber FROM users
+    LEFT JOIN orders ON users.id = orders.userId
+    ORDER BY users.name DESC
+
+# RIGHT JOIN: объединение таблицы пользователей с таблицей заказов
+# Тот же самый запрос, как запрос выше, только с объединением справа
+SELECT users.name, orders.orderNumber FROM orders
+RIGHT JOIN users ON users.id = orders.userId
+ORDER BY users.name DESC 
+```
+Илюстрация join:
+![](../../source/sql-join.png)
