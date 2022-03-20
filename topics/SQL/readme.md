@@ -117,3 +117,42 @@ ORDER BY users.name DESC
 ```
 Илюстрация join:
 ![](../../source/sql-join.png)
+
+
+### Псевдонимы, ф-ии и groupBy
+```mysql
+CREATE TABLE users(
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(30),
+  email VARCHAR(30),
+  info TEXT,
+  birth DATE,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE shop(
+   id INT NOT NULL AUTO_INCREMENT,
+   title VARCHAR(30),
+   price INT,
+   PRIMARY KEY(id)
+);
+
+SELECT name AS 'Имя' FROM users;
+
+SELECT CONCAT('Имя: ', name , ' День рождения: ', birth) AS 'Информация' FROM users;
+
+# Не объедитнение , а просто выборка из двух таблиц
+SELECT u.id, u.name, s.title, s.price FROM users AS u, shop AS s;
+
+# ф-ии для подсчета COUNT, MAX, AVG, MIN, SUM
+# ф-ии для работы с текстом  LCASE, UCASE
+SELECT COUNT(id) FROM shop;
+
+SELECT MAX(price) FROM shop;
+
+# Группировка по определенном полю
+SELECT price AS 'Цена', COUNT(price) AS 'Количество' FROM shop GROUP BY price 
+HAVING COUNT(price) > 1;
+
+
+```
