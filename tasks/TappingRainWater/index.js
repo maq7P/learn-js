@@ -43,3 +43,35 @@ const tappingRainWater = (pillars) => {
 
 console.log(tappingRainWater(pillars));
 
+// Решение за константное время алгоритмом с двумя указателями
+
+const pil2 = [4,2,0,3,2,5]; //9
+const tappingRainWater2 = (pillars) => {
+    const pillarsLen = pillars.length - 1;
+    
+    let maxLeft = pillars[0];
+    let maxRight = pillars[pillarsLen];
+
+    let left = 0;
+    let right = pillarsLen - 1;
+    let total = 0;
+
+    while(left <= right){
+        if(maxLeft <= maxRight){
+            const cur = pillars[left];
+
+            maxLeft = Math.max(maxLeft, cur);
+            total += maxLeft - cur
+            left++;
+        } else {
+            const cur = pillars[right];
+
+            maxRight = Math.max(maxRight, cur);
+            total += maxRight - cur;
+            right--;
+        }
+    }
+
+    return total
+}
+console.log(tappingRainWater2(pil2));
