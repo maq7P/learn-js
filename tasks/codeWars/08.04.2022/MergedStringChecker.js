@@ -9,3 +9,4 @@ console.log(isMerge("xcyc", "xc", "yc")) // true
 console.log(isMerge("Making progress", "Mak pross", "inggre")) // true
 console.log(isMerge("codewars", "code", "code")) // false
 console.log(isMerge("More progress", "More ess", "pro")) // false
+console.log(isMerge("codewars", "code", "wasr")) // false
