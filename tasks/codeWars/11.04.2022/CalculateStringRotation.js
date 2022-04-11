@@ -14,6 +14,11 @@ function shiftedDiff(first,second){
 	return -1
 }
 
+// one more solution
+function shiftedDiff2(first, second) {
+	if (first.length != second.length) return -1
+	return (second + second).indexOf(first)
+}
 /*
 "coffee", "eecoff" => 2
 "eecoff", "coffee" => 4
