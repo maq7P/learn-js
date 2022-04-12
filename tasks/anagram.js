@@ -32,3 +32,18 @@ console.log('hello', 'buy') //true
 //complexity speed: O(n * log(n))
 //complexity memory: O(logn): inplace sort
 const onelinerAnagram = (strA, strB) => [...strA.toLowerCase()].sort().toString() === [...strB.toLowerCase()].sort().toString();
+
+
+
+function findAllAnagram(arr) {
+    let anagramExample = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+       if(!anagram(anagramExample, arr[i])){
+           return false
+       }
+    }
+
+    return true
+}
+
+console.log(['abcd', 'cdab'])
