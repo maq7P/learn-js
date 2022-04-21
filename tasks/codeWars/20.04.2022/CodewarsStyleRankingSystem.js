@@ -8,6 +8,7 @@ class User {
 
 	#incRank(count){
 		for (let i = 0; i < count; i++) {
+			if(this.#rank === 8) return;
 			if(this.#rank === 0) count++
 
 			this.#rank++
@@ -15,24 +16,37 @@ class User {
 	}
 
 	#isNoRating(activityRank){
-		return this.rank - activityRank >= 2
+		return this.#rank === this.#maxRank
+				|| this.rank - activityRank >= 2
+				|| activityRank > this.#maxRank
+				|| activityRank < this.#startRank
 	}
 
 	incProgress(activityRank){
-		if(this.#rank === this.#maxRank || this.#isNoRating(activityRank)) return;
+		if(this.#isNoRating(activityRank)) return;
 
-		const curRankAbs = Math.abs(this.#rank);
-		const activityRankAbs = Math.abs(activityRank);
+		if(this.#rank === activityRank){
+			this.#progress += 3
+		}
+		if(this.#rank > activityRank){
+			this.#progress += 1
+		}
+		if(activityRank > this.#rank){
+			const differenceRank =  this.#rank < 0
+					&& activityRank > 0
+						? Math.abs(this.#rank - activityRank) - 1
+						: Math.abs(this.#rank - activityRank);
 
-
-		const differenceRank =  Math.max(curRankAbs, activityRankAbs) - Math.min(curRankAbs, activityRankAbs);
-		this.#progress += this.#ratio * differenceRank * differenceRank;
+			this.#progress += this.#ratio * differenceRank * differenceRank;
+		}
 
 
 		if(this.#progress >= this.#pointsToNextLvl){
 			const howManyRanksUpgrade = Math.floor(this.#progress / this.#pointsToNextLvl);
 
-			this.#progress -= this.#progress - howManyRanksUpgrade * this.#pointsToNextLvl
+			this.#progress = this.#progress -
+					(howManyRanksUpgrade > 0 ? howManyRanksUpgrade : 1) * this.#pointsToNextLvl
+
 			this.#incRank(howManyRanksUpgrade)
 		}
 	}
@@ -46,16 +60,11 @@ class User {
 }
 
 const user = new User()
+
 user.rank // => -8
 user.progress // => 0
 user.incProgress(-7)
-user.incProgress(-5) // will add 90 progress
+user.progress // => 10
+user.incProgress(8) // will add 90 progress
 user.progress // progress is now zero
-user.rank// rank was upgraded to -7
-user.incProgress(8)
-user.incProgress(8)
-user.incProgress(8)
-user.incProgress(8)
-user.incProgress(8)
-
-console.log(user.rank)
+console.log(user.rank) // rank was upgraded to -7
