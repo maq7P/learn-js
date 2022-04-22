@@ -43,3 +43,32 @@ class TreeNode {
   }
 }
 ```
+
+### Вставка эленмента
+```javascript
+function insert(x, z): // x — корень поддерева, z — вставляемый элемент
+   while(x != null){
+   	if(z.key > x.key){
+		if(x.right != null){
+			x = x.right
+		}
+       
+		else {
+		   z.parent = x
+		   x.right = z
+		   break
+		}
+  	 }
+     else(if z.key < x.key){
+     	if(x.left != null){
+		x = x.left
+	}
+
+	else {
+	z.parent = x
+	   x.left = z
+	   break
+	}
+     }
+
+```
