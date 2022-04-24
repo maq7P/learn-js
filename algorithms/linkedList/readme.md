@@ -27,6 +27,50 @@ class LinkedList {
 	get size(){
 		return this.size
   }
+  	find(value) {
+	  // Если нет head значит список пуст.
+	  if (!this.head) {
+	    return null;
+	  }
+
+	  let currentNode = this.head;
+
+	  // Перебираем все узлы в поиске значения.
+	  while (currentNode) {
+	    // Если указано значение, пробуем сравнить его по значению.
+	    if (value !== undefined && currentNode.value === value) {
+	      return currentNode;
+	    }
+
+	    // Перематываем на один узел вперед.
+	    currentNode = currentNode.next;
+	  }
+
+	  return null;
+	}
+	
+	reverse() {
+	  let currNode = this.head;
+	  let prevNode = null;
+	  let nextNode = null;
+
+	  while (currNode) {
+	    nextNode = currNode.next;
+	    currNode.next = prevNode;
+	    
+	    prevNode = currNode;
+
+	    currNode = nextNode;
+	  }
+
+	  this.tail = this.head;
+
+	  this.head = prevNode;
+
+	  // Возвращаем список.
+	  return this;
+	}
+	
 	toArr() {
 		let result = []
     let node = this.root
