@@ -81,6 +81,26 @@ class LinkedList {
 		
 		return result
   }
+  deletedNode(){
+    if(!this.head){
+        return null;
+    }
+    // if only one node in the list
+    if(!this.head.next){
+        this.head = null;
+        return;
+    }
+   let previous = this.head;
+   let tail = this.head.next;
+   
+   while(tail.next !== null){
+       previous = tail;
+       tail = tail.next;
+   }
+   
+   previous.next = null;
+   return this.head;
+}
 }
 
 class Node {
