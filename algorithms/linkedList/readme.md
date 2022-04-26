@@ -101,6 +101,34 @@ class LinkedList {
    previous.next = null;
    return this.head;
 }
+insertInPosition(position, value) {
+    if (position < 0 || position > this.length) { // returns the warning message 
+                                             // if incorrect position was specified
+        return 'Incorrect value of position';
+    }
+
+    let node = new Node(value); // creates the node using class Node
+
+    if (position === 0) { 
+        node.next = this.head; 
+        this.head = node;
+    } else {
+        let current = this.head;
+        let prev = null;
+        let index = 0;
+
+        while (index < position) {
+            prev = current;
+            current = current.next;
+            index++;
+        }
+
+        prev.next = node;
+        node.next = current;
+    }
+
+    this.length++;
+}
 }
 
 class Node {
