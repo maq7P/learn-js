@@ -27,6 +27,50 @@ class LinkedList {
 	get size(){
 		return this.size
   }
+  	find(value) {
+	  // Если нет head значит список пуст.
+	  if (!this.head) {
+	    return null;
+	  }
+
+	  let currentNode = this.head;
+
+	  // Перебираем все узлы в поиске значения.
+	  while (currentNode) {
+	    // Если указано значение, пробуем сравнить его по значению.
+	    if (value !== undefined && currentNode.value === value) {
+	      return currentNode;
+	    }
+
+	    // Перематываем на один узел вперед.
+	    currentNode = currentNode.next;
+	  }
+
+	  return null;
+	}
+	
+	reverse() {
+	  let currNode = this.head;
+	  let prevNode = null;
+	  let nextNode = null;
+
+	  while (currNode) {
+	    nextNode = currNode.next;
+	    currNode.next = prevNode;
+	    
+	    prevNode = currNode;
+
+	    currNode = nextNode;
+	  }
+
+	  this.tail = this.head;
+
+	  this.head = prevNode;
+
+	  // Возвращаем список.
+	  return this;
+	}
+	
 	toArr() {
 		let result = []
     let node = this.root
@@ -37,6 +81,54 @@ class LinkedList {
 		
 		return result
   }
+  deletedNode(){
+    if(!this.head){
+        return null;
+    }
+    // if only one node in the list
+    if(!this.head.next){
+        this.head = null;
+        return;
+    }
+   let previous = this.head;
+   let tail = this.head.next;
+   
+   while(tail.next !== null){
+       previous = tail;
+       tail = tail.next;
+   }
+   
+   previous.next = null;
+   return this.head;
+}
+insertInPosition(position, value) {
+    if (position < 0 || position > this.length) { // returns the warning message 
+                                             // if incorrect position was specified
+        return 'Incorrect value of position';
+    }
+
+    let node = new Node(value); // creates the node using class Node
+
+    if (position === 0) { 
+        node.next = this.head; 
+        this.head = node;
+    } else {
+        let current = this.head;
+        let prev = null;
+        let index = 0;
+
+        while (index < position) {
+            prev = current;
+            current = current.next;
+            index++;
+        }
+
+        prev.next = node;
+        node.next = current;
+    }
+
+    this.length++;
+}
 }
 
 class Node {
