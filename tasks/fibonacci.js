@@ -35,3 +35,17 @@ function fibonacci(num) {
   }
   
   console.log(fibonacciRecursion(7));
+
+  //Решение задачи с использованием мемоизации
+  const fibonacciSequence = [0, 1];
+  const getFibonacci = (n) => {
+    if (n < 0) {
+      return null;
+    }
+    if (fibonacciSequence[n]) {
+      return fibonacciSequence[n];
+    }
+
+    fibonacciSequence[n] = getFibonacci(n - 2) + getFibonacci(n - 1);
+    return fibonacciSequence[n];
+  };
