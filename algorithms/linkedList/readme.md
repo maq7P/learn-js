@@ -4,145 +4,146 @@
 > O(n) - поиск
 
 ```javascript
-class LinkedList {
-	constructor() {
-		this.size = 0
-		this.root = null
-  }
-	
-	add(value){
-		if(this.size === 0) {
-			this.root = new Node(value)
-			this.size++
-			return true
-    }
-		let node = this.root
-		while(node.next){
-			node = node.next
-    }
-		let newNode = new Node(value)
-    node.next = newNode
-    this.size++
-  }
-	get size(){
-		return this.size
-  }
-  	find(value) {
-	  // Если нет head значит список пуст.
-	  if (!this.head) {
-	    return null;
-	  }
-
-	  let currentNode = this.head;
-
-	  // Перебираем все узлы в поиске значения.
-	  while (currentNode) {
-	    // Если указано значение, пробуем сравнить его по значению.
-	    if (value !== undefined && currentNode.value === value) {
-	      return currentNode;
-	    }
-
-	    // Перематываем на один узел вперед.
-	    currentNode = currentNode.next;
-	  }
-
-	  return null;
+class Node{
+	constructor(value, next = null){
+		this.value = value;
+		this.next = next
 	}
-	
-	reverse() {
-	  let currNode = this.head;
-	  let prevNode = null;
-	  let nextNode = null;
+}
 
-	  while (currNode) {
-	    nextNode = currNode.next;
-	    currNode.next = prevNode;
-	    
-	    prevNode = currNode;
+class LinkedListNode {
+	_tail = null;
+	_head = null;
+	_size = 0;
 
-	    currNode = nextNode;
-	  }
+	append(value){
+		const newNode = new Node(value);
 
-	  this.tail = this.head;
+		if (!this._size){
+			this._head = newNode;
+			this._size++;
+			this._tail = newNode;
 
-	  this.head = prevNode;
+			return this
+		}
 
-	  // Возвращаем список.
-	  return this;
+		const prevNode = this._tail;
+		prevNode.next = newNode;
+
+
+		this._tail = newNode;
+		this._size++;
+
+		return this
 	}
-	
-	toArr() {
-		let result = []
-    let node = this.root
-    while(node) {
-			result.push(node.value)
-      node = node.next
-    }
-		
-		return result
-  }
-  deletedNode(){
-    if(!this.head){
-        return null;
-    }
-    // if only one node in the list
-    if(!this.head.next){
-        this.head = null;
-        return;
-    }
-   let previous = this.head;
-   let tail = this.head.next;
-   
-   while(tail.next !== null){
-       previous = tail;
-       tail = tail.next;
-   }
-   
-   previous.next = null;
-   return this.head;
+
+	prepend(value){
+		const node = new Node(value);
+
+		if (!this._size){
+			this._head = node;
+			this._tail = node;
+			this._size++;
+
+			return this
+		}
+		const oldHead = this._head;
+		this._head = node;
+		this._head.next = oldHead;
+
+		return this
+	}
+
+	find(needFindVal){
+		if (!this._head){
+			return null
+		}
+
+		let cur = this._head;
+		while (cur.next){
+			if (cur.value === needFindVal){
+				return cur
+			}
+			cur = cur.next
+		}
+
+		return null
+	}
+
+	delete(needDelVal){
+		if (!this._head) {
+			return null
+		}
+
+		let cur = this._head;
+		let prev = null;
+		let deletedNode = null;
+
+		while (cur){
+			if(cur.value === needDelVal && !prev){
+				deletedNode = this._head;
+				if(!this._head.next){
+					this._head = null;
+					this._tail = null;
+
+					return deletedNode;
+				} else {
+					const next = cur.next;
+					this._head = next;
+					cur = next;
+
+					continue;
+				}
+			}
+			if(cur.value === needDelVal && prev){
+				deletedNode = cur;
+				prev.next = cur.next || null;
+				cur = cur.next;
+				this._size--;
+
+				continue;
+			}
+
+			prev = cur;
+			cur = cur.next;
+			this._size--;
+		}
+
+		return deletedNode
+	}
+
+	toArr(){
+		if (!this._head) {
+			return []
+		}
+		let cur = this._head;
+		let arr = [];
+
+		while (cur){
+			arr.push(cur.value);
+			cur = cur.next;
+		}
+
+		return arr;
+	}
+
+	showAsArr(){
+		console.log(this.toArr())
+
+		return this;
+	}
+
+	get tail(){
+		return this._tail
+	}
+	get head(){
+		return this._head
+	}
 }
-insertInPosition(position, value) {
-    if (position < 0 || position > this.length) { // returns the warning message 
-                                             // if incorrect position was specified
-        return 'Incorrect value of position';
-    }
 
-    let node = new Node(value); // creates the node using class Node
+const linkedListNode = new LinkedListNode();
 
-    if (position === 0) { 
-        node.next = this.head; 
-        this.head = node;
-    } else {
-        let current = this.head;
-        let prev = null;
-        let index = 0;
-
-        while (index < position) {
-            prev = current;
-            current = current.next;
-            index++;
-        }
-
-        prev.next = node;
-        node.next = current;
-    }
-
-    this.length++;
-}
-}
-
-class Node {
-	constructor(value) {
-		this.value = value
-    this.next = null
-  }
-}
-
-const list = new LinkedList()
-list.add(1)
-list.add(2)
-list.add(3)
-list.add(4)
-list.size
-console.log(list.toArr())
+linkedListNode.append(1).append(10).showAsArr();
+linkedListNode.delete(1);
+linkedListNode.showAsArr();
 ```
