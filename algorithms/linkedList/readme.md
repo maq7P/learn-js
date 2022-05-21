@@ -133,12 +133,36 @@ class LinkedListNode {
 		return this;
 	}
 
+	reverse() {
+		let currNode = this.head;
+		let prevNode = null;
+		let nextNode = null;
+		
+		while (currNode) {
+			nextNode = currNode.next;
+			
+			currNode.next = prevNode;
+			prevNode = currNode;
+			
+			currNode = nextNode;
+		}
+		
+		this.tail = this.head;
+		
+		this.head = prevNode;
+		
+		return this;
+	}
+
 	get tail(){
 		return this._tail
 	}
 	get head(){
 		return this._head
 	}
+	get size(){
+		return this._size
+  }
 }
 
 const linkedListNode = new LinkedListNode();
