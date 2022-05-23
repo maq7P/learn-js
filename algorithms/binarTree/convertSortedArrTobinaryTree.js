@@ -30,59 +30,73 @@ class BinaryTree{
 				}
 			}
 			if(val > node.val){
-				node.right = val
-			} else node.left = val
+				node.right = newNode
+			} else node.left = newNode
 		}
+
+		return this
 	}
 	print(root = this.root){
 		console.log(root.val)
-		root.left && print(root.left)
-		root.right && print(root.right)
+		root?.left && print(root.left)
+		root?.right && print(root.right)
 	}
 }
 const convertSortedArrToBinaryTree = (sortedArr) => {
-	if(sortedArr.length < 3){
-		return new Error("Binary tree necessary tree node");
-	}
 
 	const binaryTree = new BinaryTree();
 
+	if (sortedArr.length === 1) return binaryTree.add(sortedArr[0]);
+	if (sortedArr.length === 0) return binaryTree.add(null);
+
 	let rootIdx = Math.floor(sortedArr.length / 2);
 	let root = sortedArr[rootIdx];
-	let leftSide = sortedArr.slice(0, rootIdx);
-	let rightSide = sortedArr.slice(rootIdx, -1);
+	let leftSide = binaryTree.add(convertSortedArrToBinaryTree(sortedArr.slice(0, rootIdx)));
+	let rightSide = binaryTree.add(convertSortedArrToBinaryTree(sortedArr.slice(rootIdx, -1)));
 
-	if(sortedArr.length === 3){
-		return new TreeNode(
-					sortedArr[1],
-					new TreeNode(sortedArr[0], null),
-					new TreeNode(sortedArr[2], null)
-			);
-	}
-
-	if(sortedArr.length === 4){
-		return new TreeNode(
-				sortedArr[1],
-				new TreeNode(sortedArr[0], null),
-				new TreeNode(sortedArr[2], sortedArr[3])
-		);
-	}
-
-	if(sortedArr.length === 5){
-		return new TreeNode(
-				sortedArr[2],
-				new TreeNode(sortedArr[1], sortedArr[0]),
-				new TreeNode(sortedArr[2], sortedArr[3])
-		);
-	}
-
-	return binaryTree.add(
-			new TreeNode(
-					root,
-					convertSortedArrToBinaryTree(leftSide),
-					convertSortedArrToBinaryTree(rightSide)
-			)
-	)
+	return binaryTree
 }
 
-convertSortedArrToBinaryTree([1,2,3,4,5,6])
+// const binaryTree = new BinaryTree();
+// console.log(binaryTree.add(5))
+// console.log(binaryTree.add(10))
+// console.log(binaryTree.add(20))
+
+
+
+
+//Simple implement
+function BinaryTreeNode(val) {
+	this.val = val;
+	this.left = this.right = null;
+}
+
+const sortedArrayToBST = (nums) => {
+	//базовые случаи
+	if (nums.length === 1) return new BinaryTreeNode(nums[0]);
+	if (nums.length === 0) return null;
+
+	//создаём вершину
+	let centerIdx = Math.floor(nums.length/2);
+	let root = new BinaryTreeNode(nums[centerIdx]);
+
+	//устанавливаем левую вершину на центр левого поддерева
+	let leftSubtree = nums.slice(0,centerIdx);
+	root.left = sortedArrayToBST(leftSubtree);
+
+	//устанавливаем правую вершину на центр правого поддерева
+	let rightSubtree = nums.slice(centerIdx+1,nums.length);
+	root.right = sortedArrayToBST(rightSubtree);
+
+	return root;
+};
+
+console.log(sortedArrayToBST([1,2,3,4,5,6]))
+
+const binaryTree = new BinaryTree();
+binaryTree.add(3)
+binaryTree.add(2)
+binaryTree.add(1)
+binaryTree.add(5)
+binaryTree.add(4)
+binaryTree.print()
