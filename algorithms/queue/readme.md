@@ -146,3 +146,25 @@ console.log(deque.removeFront()); // 5
 console.log(deque.removeFront()); // 6
 console.log(deque.removeFront()); // undefined
 ```
+
+```javascript
+class PriorityQueue extends Queue {
+	enqueue(element) {
+        if (this.isEmpty()) {
+            collection.push(element)
+        } else {
+            let added = false
+            for (let i = 0; i < collection.length; i++) {
+                if (element[1] < collection[i][1]) {
+                    collection.splice(i, 0, element)
+                    added = true
+                    break;
+                }
+            }
+            if (!added) {
+                collection.push(element)
+            }
+        }
+    }
+}
+```
