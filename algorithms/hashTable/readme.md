@@ -73,5 +73,22 @@ class HashTable {
       }
     }
   }
+	
+	get show(){
+		let presentation = "";
+		
+		if(!storage.length)
+			return "Empty data"
+    
+		for(let i = 0; i < storage.length; i++){
+			if(!storage[i].length) continue;
+			
+			for(let j = 0; j < storage[i].length; j++){
+				presentation += `${storage[i][0]} : ${storage[i][1]}` + '\n'
+      }
+    }
+		
+		return presentation
+  }
 }
 ```
