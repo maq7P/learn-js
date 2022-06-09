@@ -1,10 +1,14 @@
-/* 
+/*
+Задача о рюкзаке (Knapsack problem).
+
 Задача о рюкзаке - дано множество предметов с весом и стоимостью, 
 необходимо набить рюкзак максимальной стоимостью, вес рюкзака ограничен.
 
 Реализуйте функцию, которая находит максимальную стоимость рюкзака, 
 используйте динамическое программирование.
 */
+
+//https://habr.com/ru/post/561120/
 
 const items = [{
         weight: 6,
@@ -27,14 +31,14 @@ const items = [{
     },
 ];
 
-function knapsack(items, maxCapacity) {
-    // создаем матрицу
-    const matrix = Array(items.length + 1).fill(0).map(() => Array(maxCapacity + 1).fill(0));
+function knapsack(items, maxWeight) {
+    const matrix = Array(items.length + 1)
+        .fill(0)
+        .map(() => Array(maxWeight + 1)
+            .fill(0));
 
-    // обходим строки
-    for (let i = 1; i <= items.length; i += 1) {
-        // обходим столбцы
-        for (let j = 1; j <= maxCapacity; j += 1) {
+    for (let i = 1; i <= items.length; i++) {
+        for (let j = 1; j <= maxWeight; j++) {
             if (items[i - 1].weight > j) {
                 matrix[i][j] = matrix[i - 1][j];
             } else {
@@ -45,7 +49,7 @@ function knapsack(items, maxCapacity) {
         }
     }
 
-    return matrix[items.length][maxCapacity];
-};
+    return matrix[items.length][maxWeight];
+}
 
 knapsack(items, 9); // 55

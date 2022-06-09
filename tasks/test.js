@@ -1,30 +1,79 @@
-const denominations = [1, 5, 10, 50, 100, 1000, 2000, 5000];
+const parts = [
+	"а",
+	"без",
+	"в",
+	"во",
+	"вы",
+	"до",
+	"для",
+	"за",
+	"и",
+	"из",
+	"или",
+	"к",
+	"ко",
+	"между",
+	"на",
+	"над",
+	"не",
+	"нет",
+	"но",
+	"о",
+	"об",
+	"около",
+	"от",
+	"перед",
+	"по",
+	"под",
+	"при",
+	"про",
+	"с",
+	"со",
+	"то",
+	"у",
+	"чем",
+	"через",
+].join("|");
 
-const items = [
-	{ name: 'pack', weight: 30, cost: 30 },
-	{ name: 'phone', weight: 33, cost: 25 },
-	{ name: 'book', weight: 20, cost: 22 },
-	{ name: 'auto', weight: 10, cost: 20 },
-	{ name: 'pony', weight: 8, cost: 17 },
-	{ name: 'horse', weight: 15, cost: 15 },
-	{ name: 'toy', weight: 5, cost: 12 }
-];
+const formatString = (string) => {
+	if (
+			typeof string !== "string" ||
+			!string.length ||
+			(string.split(" ").length < 2 && parts.includes(string))
+	)
+		return string;
 
-function knapsack(items, weight){
-	let tempWeight = weight;
-	const res = [];
+	const needSpaceBeforeArr = ["млн", "тыс", "млрд", "трлн", "$", "₽", "€"];
+	const replacementsArray = string.match(/<.*?>/g) || [];
+	const trimmedString = replacementsArray.reduce(
+			(acc, curr, index) => acc.replace(curr, `%%%${index}%%%`),
+			string,
+	);
+	const partsRegexp = new RegExp(`( |^)(${parts})( |$)`, "gi");
+	const needSpaceBeforeRegexp = new RegExp(
+			`\\s(${needSpaceBeforeArr.join("|")})`,
+			"g",
+	);
+	const quoteLeftRegexp = /[«'"`]([\wа-я])/gi;
+	const quoteRightRegexp = /([\wа-я])[»'"`]/gi;
+	const dashRegexp = /[ ](-|–|‒)/g;
+	const priceRegexp = /\d+(\s\d{3})+/g;
 
-	for (let i = 0; i < items.length; i++) {
-		const item = items.sort((a, b) => b - a)[i];
+	const formattedString = trimmedString
+			.replace(partsRegexp, match => match.substr(0, match.length - 1) + "&nbsp;")
+			.replace(needSpaceBeforeRegexp, match => match.replace(/\s/g, "&nbsp;"))
+			.replace(priceRegexp, match => match.replace(/\s/g, "&nbsp;"))
+			.replace(quoteLeftRegexp, "&laquo;$1")
+			.replace(quoteRightRegexp, "$1&raquo;")
+			.replace(
+					dashRegexp,
+					(match, p1, position) => `${position ? "&nbsp;" : ""}&mdash;`,
+			);
 
-		if(item.weight <= tempWeight){
-			tempWeight -= item.weight;
-			res.push(item.name)
-		}
-		
-	}
+	return replacementsArray.reduce(
+			(acc, curr, index) => acc.replace(`%%%${index}%%%`, curr),
+			formattedString,
+	);
+};
 
-	return res.sort()
-}
-
-console.log(knapsack(items, 121))
+console.log(formatString('"нет"'))
