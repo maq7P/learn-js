@@ -12,5 +12,5 @@ Of the additional conditions, this is that the length of the array
 can be from 1 to 10,000, and the values ​​of the elements in the array can be from 0 to 100,000.
 
 ### Алгоритм решения визуально
-![](../../source/rain.jpg)
+![](../../../source/rain.jpg)
 

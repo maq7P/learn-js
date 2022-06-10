@@ -1,5 +1,7 @@
 {
-  "include": ["task"],
+  "include": [
+    "task"
+  ],
   "compilerOptions": {
     "target": "ES6",
     "experimentalDecorators": true,
