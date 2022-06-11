@@ -1,6 +1,8 @@
 {
   "include": [
-    "task"
+    "Easy",
+    "Medium",
+    "Hard"
   ],
   "compilerOptions": {
     "target": "ES6",
