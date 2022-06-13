@@ -23,7 +23,30 @@ function findDisappearedNumbers(nums: number[]): number[] {
   return res
 }
 
+function findDisappearedNumbersWithCycleSort(nums: number[]): number[] {
+  let idx = 0
+
+  while(idx < nums.length){
+    const sortIdx = nums[idx] - 1
+    if(sortIdx === idx){
+      idx++;
+      continue;
+    }
+
+    [nums[sortIdx], nums[idx]] = [nums[idx], nums[sortIdx]]
+  }
+
+  const miss = [];
+  for (let i = 0; i < nums.length; i++) {
+    if(nums[i] !== i + 1){
+      miss.push(i + 1)
+    }
+  }
+
+  return miss
+}
+
 //[5,6]
-console.log(findDisappearedNumbers([4,3,2,7,8,2,3,1]))
+console.log(findDisappearedNumbersWithCycleSort([4,3,2,7,8,2,3,1]))
 //2
 console.log(findDisappearedNumbers([1,1]))
