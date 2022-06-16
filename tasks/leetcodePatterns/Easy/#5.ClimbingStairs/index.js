@@ -1,5 +1,9 @@
 "use strict";
 //https://leetcode.com/problems/climbing-stairs/
+/*
+* На n-ую ступеньку можно попасть двумя способами:
+*  пройти от n - 1 и от n - 2, то есть сумма их вариантов -> чирсла фибоначи
+* */
 function climbStairs(n) {
     if (n <= 2) {
         return n;
