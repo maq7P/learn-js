@@ -1,5 +1,6 @@
 "use strict";
 //https://leetcode.com/problems/counting-bits/
+//Плохое решение
 function countBits(n) {
     const res = [];
     for (let i = 0; i <= n; i++) {
