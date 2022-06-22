@@ -1,22 +1,3 @@
-"use strict";
-//https://leetcode.com/problems/linked-list-cycle/
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     val: number
- *     next: ListNode | null
- *     constructor(val?: number, next?: ListNode | null) {
- *         this.val = (val===undefined ? 0 : val)
- *         this.next = (next===undefined ? null : next)
- *     }
- * }
- */
-class ListNode {
-    constructor(val, next) {
-        this.val = (val === undefined ? 0 : val);
-        this.next = (next === undefined ? null : next);
-    }
-}
 function hasCycle(head) {
     if (!head)
         return false;
@@ -30,3 +11,4 @@ function hasCycle(head) {
     }
     return false;
 }
+export {};
