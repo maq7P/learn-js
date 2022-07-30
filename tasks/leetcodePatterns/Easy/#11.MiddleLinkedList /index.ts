@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/middle-of-the-linked-list/
-import ListNode from "../ListNode/index";
+import ListNode from "../../common/ListNode/index";
 
 function middleNode(head: ListNode | null): ListNode | null {
   if (!head) return null

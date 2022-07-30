@@ -5,11 +5,6 @@ function twoSum(nums, target) {
     const res = [];
     for (let i = 0; i < nums.length; i++) {
         const cur = nums[i];
-        console.log("cur: ", cur);
-        console.log(values);
-        console.log(target - cur);
-        console.log(values[target - cur]);
-        console.log('_______');
         if (typeof values[target - cur] === 'number') {
             return [values[target - cur], i];
         }

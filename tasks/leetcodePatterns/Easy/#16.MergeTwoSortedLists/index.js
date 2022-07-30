@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/merge-two-sorted-lists/
-import ListNode from "../ListNode/index";
+import ListNode from "../../common/ListNode/index";
 function mergeTwoLists(list1, list2) {
     let merged = new ListNode(0);
     const res = merged;

@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/linked-list-cycle/
-import ListNode from "../ListNode/index";
+import ListNode from "../../common/ListNode/index";
 
 function hasCycle(head: ListNode | null): boolean {
   if(!head) return false

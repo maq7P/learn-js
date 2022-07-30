@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/remove-linked-list-elements/
-import ListNode from "../ListNode/index";
+import ListNode from "../../common/ListNode/index";
 function removeElements(head, val) {
     var _a;
     if (!head)

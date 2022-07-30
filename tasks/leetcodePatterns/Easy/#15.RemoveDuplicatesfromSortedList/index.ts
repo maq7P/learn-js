@@ -1,6 +1,6 @@
 //https://leetcode.com/problems/remove-duplicates-from-sorted-list/
 
-import ListNode from "../ListNode/index";
+import ListNode from "../../common/ListNode/index";
 
 function deleteDuplicates(head: ListNode | null): ListNode | null {
   if(!head) return null

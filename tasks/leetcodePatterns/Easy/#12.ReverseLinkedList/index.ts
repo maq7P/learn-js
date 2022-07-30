@@ -1,6 +1,6 @@
 //https://leetcode.com/problems/reverse-linked-list/
 
-import ListNode from "../ListNode/index";
+import ListNode from "../../common/ListNode/index";
 
 function reverseList(head: ListNode | null): ListNode | null {
   if(!head) return null

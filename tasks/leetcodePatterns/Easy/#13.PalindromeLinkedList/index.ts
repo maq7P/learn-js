@@ -1,6 +1,6 @@
 //https://leetcode.com/problems/palindrome-linked-list/
 
-import ListNode from "../ListNode/index";
+import ListNode from "../../common/ListNode/index";
 
 class Solution {
   static middleNode(head: ListNode | null): ListNode | null {
