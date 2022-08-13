@@ -1,5 +1,6 @@
 "use strict";
 //https://leetcode.com/problems/roman-to-integer/
+//TODO: re
 const GRADES = {
     I: 1,
     V: 5,
@@ -25,3 +26,5 @@ function romanToInt(s) {
 }
 ;
 console.log(romanToInt("MCMXCIV"));
+console.log(romanToInt("LVIII"));
+console.log(romanToInt("III"));
