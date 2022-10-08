@@ -5,7 +5,7 @@ function countBitsAlg(n) {
     for (let i = 0; i <= n; i++) {
         let cur = 0, temp = i;
         while (temp) {
-            cur = temp & 1;
+            cur += temp & 1;
             temp >>= 1;
         }
         res.push(cur);
