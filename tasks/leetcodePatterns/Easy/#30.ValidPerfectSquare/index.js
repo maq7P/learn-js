@@ -1,11 +1,14 @@
 "use strict";
 //https://leetcode.com/problems/valid-perfect-square/
 function isPerfectSquare(num) {
-    let left = 0;
-    let right = Math.floor(num / 2);
+    let left = 0, right = Math.floor(num / 2);
     while (left <= right) {
-        let middle = Math.floor((right + left) / 2);
-        const currentPower = Math.pow(middle, middle);
+        let middle = Math.floor((right - left) / 2) + left;
+        console.log("left: ", left);
+        console.log("right: ", right);
+        console.log(middle);
+        console.log("____________");
+        const currentPower = middle * middle;
         if (num === currentPower)
             return true;
         if (num > currentPower) {
@@ -17,4 +20,4 @@ function isPerfectSquare(num) {
     }
     return false;
 }
-console.log(isPerfectSquare(8));
+console.log(isPerfectSquare(1));

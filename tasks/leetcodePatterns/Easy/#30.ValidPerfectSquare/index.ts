@@ -1,13 +1,13 @@
 //https://leetcode.com/problems/valid-perfect-square/
 
 function isPerfectSquare(num: number): boolean {
-  let left = 0
-  let right = 30
+  if(num === 1) return true
+
+  let left = 0, right = Math.floor(num / 2);
 
   while(left <= right){
-    let middle = Math.floor((right + left) / 2)
-
-    const currentPower = 2 ** middle
+    let middle = Math.floor((right - left) / 2) + left
+    const currentPower = middle * middle
 
     if(num === currentPower) return true
 
@@ -23,4 +23,4 @@ function isPerfectSquare(num: number): boolean {
   return false
 }
 
-console.log(isPerfectSquare(9))
+console.log(isPerfectSquare(1))
