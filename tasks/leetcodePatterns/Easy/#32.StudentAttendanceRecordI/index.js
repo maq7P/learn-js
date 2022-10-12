@@ -1,20 +1,20 @@
 "use strict";
 function checkRecord(s) {
-    let isPrevAbsent = false, absentCount = 0, lateCount = 0;
-    for (let record of s) {
-        if (record === "A") {
-            isPrevAbsent = true;
-            absentCount++;
+    let a_Count = 0, l_Count = 0;
+    for (let c of s) {
+        if (c === "A") {
+            a_Count++;
+            if (a_Count === 2)
+                return false;
         }
-        else {
-            isPrevAbsent = false;
-            absentCount = 0;
+        if (c === "L") {
+            l_Count++;
+            if (l_Count > 2)
+                return false;
         }
-        if (record === "L")
-            lateCount++;
+        else
+            l_Count = 0;
     }
-    console.log("absentCount: ", absentCount);
-    console.log("lateCount: ", lateCount);
     return true;
 }
 console.log(checkRecord("AAALLP"));
