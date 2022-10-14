@@ -3,16 +3,16 @@
 function isSubsequence(s: string, t: string): boolean {
 
   let temp = 0
-  let stack = []
+  let checker = []
 
   for(let c of t){
     if(c === s[temp]){
-      stack.push(c)
+      checker.push(c)
       temp++
     }
   }
 
-  return s === stack.join("")
+  return s === checker.join("")
 
 }
 

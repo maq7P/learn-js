@@ -2,15 +2,13 @@
 //https://leetcode.com/problems/is-subsequence/
 function isSubsequence(s, t) {
     let temp = 0;
-    let stack = [];
+    let checker = [];
     for (let c of t) {
         if (c === s[temp]) {
-            stack.push(c);
+            checker.push(c);
             temp++;
         }
     }
-    console.log(stack.join(""));
-    return s === stack.join("");
+    return s === checker.join("");
 }
-;
 console.log(isSubsequence("axc", "ahbgdc"));
