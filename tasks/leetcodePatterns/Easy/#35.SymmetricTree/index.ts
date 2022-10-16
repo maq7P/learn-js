@@ -6,44 +6,33 @@ import TreeNode from "../../common/TreeNode/index.js";
 function isSymmetric(root: TreeNode | null): boolean {
   const queue  = [root]
 
-  const levels = []
-  
   while(queue.length){
     const level = []
-    
-    
-    for(let i = 0; i < queue.length; i++){
+    const len = queue.length
+
+    for(let i = 0; i < len; i++){
       const current = queue.shift()
-
-      console.log("iter: ", queue);
       
-      level.push(current?.val)
+      level.push(current?.val || null)
+      current && queue.push(
+        current.left, current.right
+      )
 
-      if(current?.left){
-        queue.push(current.left)
-      }
-
-      if(current?.right){
-        queue.push(current.right)
-      }
+    }
+    
+    const leftSide = level.slice(0, level.length / 2)
+    const rightSide = level.slice(level.length / 2).reverse()
+    
+    for(let i = 0; i < leftSide.length; i++){
+      if(leftSide[i] !== rightSide[i]) return false
     }
 
-    // console.log(level);
-    // console.log(queue);
-    
-    
-
-    levels.push(level)
-
-  }
-
-  console.log(levels);
+  }  
   
-
-  return false
+  return true
 };
 
-const tree = new TreeNode(
+const tree1 = new TreeNode(
   1, 
   new TreeNode(
     2,
@@ -52,10 +41,24 @@ const tree = new TreeNode(
   ),
   new TreeNode(
     2,
-    new TreeNode(5), 
-    new TreeNode(3)
+    new TreeNode(3), 
+    new TreeNode(5)
   )
 )
 
+const tree2 = new TreeNode(
+  1, 
+  new TreeNode(
+    2,
+    new TreeNode(3),
+    new TreeNode(),
+  ),
+  new TreeNode(
+    2,
+    new TreeNode(),
+    new TreeNode(3), 
+  )
+)
 
-console.log(isSymmetric(tree));
+console.log(isSymmetric(tree1));
+console.log(isSymmetric(tree2));

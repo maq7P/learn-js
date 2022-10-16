@@ -3,27 +3,32 @@ import TreeNode from "../../common/TreeNode/index.js";
 // with BFS
 function isSymmetric(root) {
     const queue = [root];
-    const levels = [];
     while (queue.length) {
         const level = [];
-        for (let i = 0; i < queue.length; i++) {
+        const len = queue.length;
+        for (let i = 0; i < len; i++) {
             const current = queue.shift();
-            console.log("iter: ", queue);
-            level.push(current === null || current === void 0 ? void 0 : current.val);
-            if (current === null || current === void 0 ? void 0 : current.left) {
-                queue.push(current.left);
-            }
-            if (current === null || current === void 0 ? void 0 : current.right) {
-                queue.push(current.right);
-            }
+            level.push((current === null || current === void 0 ? void 0 : current.val) || null);
+            // if(current?.left){
+            //   queue.push(current.left)
+            // }
+            // if(current?.right){
+            //   queue.push(current.right)
+            // }
+            current && queue.push(current.left, current.right);
         }
-        // console.log(level);
-        // console.log(queue);
-        levels.push(level);
+        const centredIdx = level.length / 2;
+        const leftSide = level.slice(0, centredIdx);
+        const rightSide = level.slice(centredIdx).reverse();
+        for (let i = 0; i < leftSide.length; i++) {
+            if (leftSide[i] !== rightSide[i])
+                return false;
+        }
     }
-    console.log(levels);
-    return false;
+    return true;
 }
 ;
-const tree = new TreeNode(1, new TreeNode(2, new TreeNode(5), new TreeNode(3)), new TreeNode(2, new TreeNode(5), new TreeNode(3)));
-console.log(isSymmetric(tree));
+const tree1 = new TreeNode(1, new TreeNode(2, new TreeNode(5), new TreeNode(3)), new TreeNode(2, new TreeNode(3), new TreeNode(5)));
+const tree2 = new TreeNode(1, new TreeNode(2, new TreeNode(3), new TreeNode()), new TreeNode(2, new TreeNode(), new TreeNode(3)));
+console.log(isSymmetric(tree1));
+console.log(isSymmetric(tree2));
