@@ -9,17 +9,10 @@ function isSymmetric(root) {
         for (let i = 0; i < len; i++) {
             const current = queue.shift();
             level.push((current === null || current === void 0 ? void 0 : current.val) || null);
-            // if(current?.left){
-            //   queue.push(current.left)
-            // }
-            // if(current?.right){
-            //   queue.push(current.right)
-            // }
             current && queue.push(current.left, current.right);
         }
-        const centredIdx = level.length / 2;
-        const leftSide = level.slice(0, centredIdx);
-        const rightSide = level.slice(centredIdx).reverse();
+        const leftSide = level.slice(0, level.length / 2);
+        const rightSide = level.slice(level.length / 2).reverse();
         for (let i = 0; i < leftSide.length; i++) {
             if (leftSide[i] !== rightSide[i])
                 return false;
