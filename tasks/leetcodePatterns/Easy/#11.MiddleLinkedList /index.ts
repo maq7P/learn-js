@@ -4,15 +4,12 @@ import ListNode from "../../common/ListNode/index.js";
 function middleNode(head: ListNode | null): ListNode | null {
   if (!head) return null
 
-  let fast = head
-  let slow = head
+  let fast: ListNode | null = head
+  let slow: ListNode | null = head
 
-  while (slow.next && fast.next) {
+  while (slow.next && fast?.next) {
     slow = slow.next
-
-    if(fast.next.next){
-      fast = fast.next.next
-    } else break
+    fast = fast.next?.next
   }
 
   return slow
