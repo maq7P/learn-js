@@ -1,7 +1,5 @@
 //https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
 
-//with convert to string 
-
 //faster 80% than other solution
 function findNumbers2(nums: number[]): number {
     
