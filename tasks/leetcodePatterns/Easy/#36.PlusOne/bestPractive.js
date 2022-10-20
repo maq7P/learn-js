@@ -3,11 +3,15 @@
 function plusOneBestPractice(digits) {
     let carry = 1;
     for (let i = digits.length - 1; i >= 0; i--) {
-        const cur = (digits[i] + carry) % 10;
-        digits[i] = cur;
+        const cur = digits[i] + carry;
+        digits[i] = cur % 10;
         carry = Math.floor(cur / 10);
     }
-    console.log(carry);
-    return carry ? [carry, ...digits] : digits;
+    // unhift working more faster than destructuring
+    // with unshift 73 ms
+    // with destructuring 120ms
+    // return carry ? [carry, ...digits] : digits
+    carry ? digits.unshift(carry) : digits;
+    return digits;
 }
 console.log(plusOneBestPractice([9]));

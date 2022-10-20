@@ -1,5 +1,5 @@
 "use strict";
-function isPalindrome(x) {
+function isPalindromeNumber(x) {
     if (x < 0)
         return false;
     let palindromeNum = 0;
@@ -7,10 +7,6 @@ function isPalindrome(x) {
     while (copyX) {
         palindromeNum = palindromeNum * 10 + (copyX % 10);
         copyX = Math.floor(copyX / 10);
-        console.log(copyX);
     }
-    console.log(palindromeNum);
     return palindromeNum === x;
 }
-;
-isPalindrome(0);

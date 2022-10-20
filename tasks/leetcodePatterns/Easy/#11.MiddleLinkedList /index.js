@@ -1,17 +1,14 @@
 //https://leetcode.com/problems/middle-of-the-linked-list/
 import ListNode from "../../common/ListNode/index.js";
 function middleNode(head) {
+    var _a;
     if (!head)
         return null;
     let fast = head;
     let slow = head;
-    while (slow.next && fast.next) {
+    while (slow.next && (fast === null || fast === void 0 ? void 0 : fast.next)) {
         slow = slow.next;
-        if (fast.next.next) {
-            fast = fast.next.next;
-        }
-        else
-            break;
+        fast = (_a = fast.next) === null || _a === void 0 ? void 0 : _a.next;
     }
     return slow;
 }

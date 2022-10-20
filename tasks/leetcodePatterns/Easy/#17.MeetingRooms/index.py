@@ -15,6 +15,6 @@ print(canAttendMeetings([
 
 # True
 print(canAttendMeetings([
-  {"start": 5, "end": 10},
   {"start": 11, "end": 20},
+  {"start": 5, "end": 10},
 ]))

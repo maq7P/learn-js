@@ -1,5 +1,6 @@
 //https://leetcode.com/problems/is-subsequence/
 
+//Slow solution because stack need reverse, previous solution more fast
 function isSubsequenceWithStack(s: string, t: string): boolean {
 
   let stack = Array.from(s).reverse();

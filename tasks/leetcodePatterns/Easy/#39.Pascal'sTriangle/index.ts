@@ -21,3 +21,5 @@ function generate(numRows: number): number[][] {
 };
 
 console.log(generate(5));
+
+//solution with biomenal coefficient https://www.geeksforgeeks.org/pascal-triangle/

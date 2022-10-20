@@ -1,9 +1,6 @@
 "use strict";
 //https://leetcode.com/problems/maximum-average-subarray-i/
 function findMaxAverage2(nums, k) {
-    const calcAvg = (nums) => {
-        return nums.reduce((acc, num) => (acc += num), 0) / nums.length;
-    };
     let count = 0;
     let answer = -Infinity;
     let cur = 0;

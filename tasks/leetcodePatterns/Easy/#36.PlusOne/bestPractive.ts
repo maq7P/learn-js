@@ -12,14 +12,14 @@ function plusOneBestPractice(digits: number[]): number[] {
 
   }
   
-
   // unhift working more faster than destructuring
   // with unshift 73 ms
   // with destructuring 120ms
+
   // return carry ? [carry, ...digits] : digits
   carry ? digits.unshift(carry) : digits
 
-  return carry
+  return digits
 }
 
 console.log(plusOneBestPractice([9]));

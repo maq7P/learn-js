@@ -15,8 +15,8 @@ function generate(numRows) {
         }
         triangle.push([1, ...middlePart, 1]);
     }
-    console.log(triangle);
     return triangle;
 }
 ;
 console.log(generate(5));
+//solution with biomenal coefficient https://www.geeksforgeeks.org/pascal-triangle/
