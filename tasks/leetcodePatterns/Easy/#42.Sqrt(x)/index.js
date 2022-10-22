@@ -1,5 +1,7 @@
 "use strict";
 function mySqrt(x) {
+    if (x <= 1)
+        return x;
     let left = 1, right = Math.floor(x / 2), mid = 1;
     while (left <= right) {
         mid = Math.floor(((left + right) / 2));

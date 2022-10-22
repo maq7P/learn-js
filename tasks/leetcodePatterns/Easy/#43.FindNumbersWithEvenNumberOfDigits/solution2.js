@@ -1,6 +1,6 @@
 "use strict";
 //https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
-//with convert to string 
+//faster 80% than other solution
 function findNumbers2(nums) {
     let count = 0;
     for (let num of nums) {
