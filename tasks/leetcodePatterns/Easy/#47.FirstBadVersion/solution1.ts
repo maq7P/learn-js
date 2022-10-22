@@ -7,6 +7,7 @@
  * };
  */
 
+// faster than 72.97%
  var solution = function(isBadVersion: any) {
 
   return function(n: number): number {
