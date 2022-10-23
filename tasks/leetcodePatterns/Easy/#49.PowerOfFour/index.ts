@@ -28,3 +28,14 @@ function isPowerOfFour3(n: number): boolean {
     
   return false
 };
+
+// check for mask: 101010101010 in binary and 0x55555555 in octal number system
+//example: 100 & 101 !== 0
+//         10000 & 101010 !== 0
+
+
+//faster than 95% (O(1) O(1))
+function isPowerOfFourFast(n: number): boolean {
+  return  n > 0 && (n & (n - 1)) === 0 && (n & 0x55555555) !== 0
+}
+
