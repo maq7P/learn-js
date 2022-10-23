@@ -1,6 +1,19 @@
 //https://leetcode.com/problems/power-of-four/
 
-function isPowerOfFour(n: number): boolean {
-  return !!(((n % 10 === 6 || n % 10 === 4) 
-    && (n < 4 ** 2 ? n % 4 === 0 : n % 4 ** 2 === 0)) || n === 1)
+// test that number is deree of two:
+// n & (n - 1) === 0
+// example:
+// 1000 & (1000 - 0001) = 1000 & 0111 = 0 
+
+
+// faster than 35%
+function isPowerOfFour2(n: number): boolean {
+  if(!(n > 0 && (n & (n - 1)) === 0)){
+    return false
+  }
+  const sq = Math.round(Math.sqrt(n))
+
+  return sq * sq === n
 };
+
+console.log(isPowerOfFour2(4));

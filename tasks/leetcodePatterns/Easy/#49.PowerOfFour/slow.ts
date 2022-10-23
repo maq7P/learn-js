@@ -1,5 +1,6 @@
 
 //dumn solution (faster 14%)
+// O(log(n))  O(1) 
 function isPowerOfFourSlow(n: number): boolean {
   let power = 0
   
