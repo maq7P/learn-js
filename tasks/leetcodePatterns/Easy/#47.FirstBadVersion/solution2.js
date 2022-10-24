@@ -6,6 +6,7 @@
  *     ...
  * };
  */
+// faster than 91.35%
 var solution2 = function (isBadVersion) {
     return function (n) {
         let left = 1;

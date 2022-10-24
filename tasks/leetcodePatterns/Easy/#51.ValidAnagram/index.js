@@ -1,5 +1,6 @@
 "use strict";
 //https://leetcode.com/problems/valid-anagram/
+//faster than 90.12%
 function isAnagram(s, t) {
     const sHash = {};
     for (let item of s) {
