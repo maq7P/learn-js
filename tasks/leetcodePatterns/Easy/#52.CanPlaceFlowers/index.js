@@ -7,7 +7,7 @@ function canPlaceFlowers(flowerbed, n) {
             n--;
         }
     }
-    return n === 0;
+    return n <= 0;
 }
 ;
 console.log(canPlaceFlowers([1, 0, 0, 0, 1], 1)); // true
@@ -16,3 +16,4 @@ console.log(canPlaceFlowers([1, 0, 0, 0, 0, 0, 1], 2)); // true
 console.log(canPlaceFlowers([1, 0, 0, 0, 0, 1], 2)); // false
 console.log(canPlaceFlowers([0, 0, 1, 0, 1], 1)); // true
 console.log(canPlaceFlowers([0, 0, 1, 0, 0], 2)); // true
+console.log(canPlaceFlowers([0, 0, 1, 0, 0], 1)); // true

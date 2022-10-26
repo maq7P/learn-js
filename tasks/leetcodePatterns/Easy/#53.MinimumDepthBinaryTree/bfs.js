@@ -9,8 +9,9 @@ function minDepthBFS(root) {
         if (!(curNode === null || curNode === void 0 ? void 0 : curNode.left) && !(curNode === null || curNode === void 0 ? void 0 : curNode.right)) {
             return curDepth;
         }
-        curNode.left && queue.push([curNode.left, ++curDepth]);
-        curNode.right && queue.push([curNode.right, ++curDepth]);
+        curDepth++;
+        curNode.left && queue.push([curNode.left, curDepth]);
+        curNode.right && queue.push([curNode.right, curDepth]);
     }
     return 0;
 }

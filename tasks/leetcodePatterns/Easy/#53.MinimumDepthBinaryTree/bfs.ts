@@ -13,10 +13,10 @@ function minDepthBFS(root: TreeNode | null): number {
     
     if(!curNode?.left && !curNode?.right){
       return curDepth
-    }
-    
+    }     
+         
     curDepth++
-    
+       
     curNode.left && queue.push([curNode.left, curDepth])
     curNode.right && queue.push([curNode.right, curDepth])
   }

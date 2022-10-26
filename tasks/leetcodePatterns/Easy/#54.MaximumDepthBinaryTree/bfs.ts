@@ -2,15 +2,24 @@
 
 import TreeNode from "../../common/TreeNode/index.js";
 
-//29.83%
+//35.85%
 function maxDepth(root: TreeNode | null): number {
   if(!root) return 0
 
-  const left = maxDepth(root?.left || null)
-  const right = maxDepth(root?.right || null)
+  const queue = [{root, depth: 1}]
+  let max = 0
 
-  return Math.max(left + 1, right + 1)
-};
+  while(queue.length){
+    const { root, depth } = queue.shift() as any
+
+    max = Math.max(max, depth)
+
+    root.left && queue.push({root: root.left, depth: depth + 1})
+    root.right && queue.push({root: root.right, depth: depth + 1})
+  }
+
+  return max
+}
 
 //[2,null,3,null,4,null,5,null,6] --> 5
 console.log(maxDepth(
