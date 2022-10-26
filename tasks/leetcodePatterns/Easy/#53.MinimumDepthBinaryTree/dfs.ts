@@ -8,7 +8,11 @@ function minDepth(root: TreeNode | null): number {
   const left: number = root?.left ? minDepth(root?.left) : 0
   const right: number = root?.right ? minDepth(root?.right): 0
 
-  return (left !== 0 && right !== 0) && left < right ? left + 1 : right + 1
+  if(left == 0 || right == 0){ //for screwed tree
+    return Math.max(left + 1, right + 1)
+  }
+  
+  return Math.min(left + 1, right + 1)
 };
 
 console.log(minDepth(new TreeNode(1, new TreeNode(2))))

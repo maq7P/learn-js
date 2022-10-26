@@ -5,7 +5,10 @@ function minDepth(root) {
         return 0;
     const left = (root === null || root === void 0 ? void 0 : root.left) ? minDepth(root === null || root === void 0 ? void 0 : root.left) : 0;
     const right = (root === null || root === void 0 ? void 0 : root.right) ? minDepth(root === null || root === void 0 ? void 0 : root.right) : 0;
-    return (left !== 0 && right !== 0) && left < right ? left + 1 : right + 1;
+    if (left == 0 || right == 0) {
+        return Math.max(left + 1, right + 1);
+    }
+    return Math.min(left + 1, right + 1);
 }
 ;
 console.log(minDepth(new TreeNode(1, new TreeNode(2))));
