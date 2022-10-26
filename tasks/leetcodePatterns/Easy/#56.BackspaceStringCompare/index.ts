@@ -1,22 +1,19 @@
 //https://leetcode.com/problems/backspace-string-compare/
 
 function backspaceCompare(s: string, t: string): boolean {
-  let stackC: string[] = []
-  let stackT: string[] = []
-  
-  for(let c of s){
-    if(c === "#"){
-      stackC.pop()
-    } else stackC.push(c)
+  const typing = (word: string) => {
+    const stack: string[] = []
+
+    for(let char of word){
+      if(char === "#"){
+        stack.pop()
+      } else stack.push(char)
+    }
+
+    return stack.join("")
   }
 
-  for(let c of t){
-    if(c === "#"){
-      stackT.pop()
-    } else stackT.push(c)
-  }
-
-  return stackC.join("") === stackT.join("")
+  return typing(s) === typing(t)
 };
 
 console.log(backspaceCompare("ab#c", "ad#c") === true);
