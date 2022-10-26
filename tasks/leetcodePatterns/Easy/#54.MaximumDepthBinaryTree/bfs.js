@@ -1,6 +1,9 @@
 //https://leetcode.com/problems/maximum-depth-of-binary-tree/
 import TreeNode from "../../common/TreeNode/index.js";
+//35.85%
 function maxDepth(root) {
+    if (!root)
+        return 0;
     const queue = [{ root, depth: 1 }];
     let max = 0;
     while (queue.length) {
