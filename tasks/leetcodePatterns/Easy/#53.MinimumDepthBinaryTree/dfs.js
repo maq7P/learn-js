@@ -5,7 +5,7 @@ function minDepth(root) {
         return 0;
     const left = (root === null || root === void 0 ? void 0 : root.left) ? minDepth(root === null || root === void 0 ? void 0 : root.left) : 0;
     const right = (root === null || root === void 0 ? void 0 : root.right) ? minDepth(root === null || root === void 0 ? void 0 : root.right) : 0;
-    if (left == 0 || right == 0) {
+    if (left == 0 || right == 0) { //for screwed tree
         return Math.max(left + 1, right + 1);
     }
     return Math.min(left + 1, right + 1);
