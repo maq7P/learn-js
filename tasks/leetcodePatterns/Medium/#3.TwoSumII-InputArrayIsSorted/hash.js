@@ -1,12 +1,13 @@
 "use strict";
 //https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+//classic solution with hash
 function twoSum2(numbers, target) {
     const hash = {};
     for (let i = 0; i < numbers.length; i++) {
         if (hash[numbers[i]] !== undefined) {
-            return [hash[numbers[i]], i];
+            return [hash[numbers[i]] + 1, i + 1];
         }
-        hash[target - numbers[i]] = i + 1;
+        hash[target - numbers[i]] = i;
     }
     return [];
 }

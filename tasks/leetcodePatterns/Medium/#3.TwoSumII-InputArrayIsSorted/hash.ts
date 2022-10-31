@@ -1,5 +1,6 @@
 //https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 
+//classic solution with hash
 function twoSum2(numbers: number[], target: number): number[] {
 
   const hash: Record<string, number> = {}
