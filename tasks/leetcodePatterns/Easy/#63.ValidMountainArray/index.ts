@@ -1,41 +1,23 @@
 //https://leetcode.com/problems/valid-mountain-array/
 
 function validMountainArray(arr: number[]): boolean {
-  if(arr.length < 3) return false
+  let i = 0
 
-  let left, right;
-
-  for(let i = 1; i < arr.length - 1; i++){
-    if(arr[i] > arr[i - 1]){
-      left = i
-    }
+  while(i < arr.length && i + 1 < arr.length && arr[i] < arr[i + 1]){
+    i++
   }
 
-  for(let i = arr.length - 2; i < 0; i++){
-    if(arr[i] < arr[i - 1]){
-      right = i
-    }
+  if(i === 0 || i + 1 >= arr.length){
+    return false
   }
 
-  // for(let i = 1; i < arr.length - 1; i++){    
-  //   if(arr[i] >  arr[i - 1]){
-  //     left = i
-  //   }
+  while(i < arr.length && i + 1 < arr.length){
+    if(arr[i] <= arr[i + 1]) return false
+    i++
+  }
 
-  //   if(arr[arr.length - i] < arr[arr.length - i - 1]){
-  //     right = i
-  //   }
-  // }
-
-  console.log(left);
-  console.log(right);
-  console.log("_______--");
-  
-  
-  
-  return left === right
+  return true
 };
-
 
 console.log(validMountainArray([3,5,5]));
 console.log(validMountainArray([0,3,2,1]));
