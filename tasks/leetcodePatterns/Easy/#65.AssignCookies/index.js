@@ -3,18 +3,14 @@
 function findContentChildren(g, s) {
     const sortG = g.sort((a, b) => a - b);
     const sortS = s.sort((a, b) => a - b);
-    console.log(sortG);
-    console.log(sortS);
-    let iG = 0, iS = 0, count = 0;
+    let iG = 0, iS = 0;
     while (iS <= sortS.length) {
         if (sortS[iS] >= sortG[iG]) {
-            count++;
             iG++;
-            sortG.unshift();
         }
         iS++;
     }
-    return count;
+    return iG;
 }
 ;
 console.log(findContentChildren([1, 2, 3], [1, 1]));
