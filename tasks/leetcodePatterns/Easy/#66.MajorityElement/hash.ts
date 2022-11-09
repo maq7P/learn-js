@@ -14,3 +14,4 @@ function majorityElement(nums: number[]): number {
 
    return NaN
 };
+
