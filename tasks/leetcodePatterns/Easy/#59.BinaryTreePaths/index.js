@@ -5,10 +5,10 @@ function binaryTreePaths(root) {
         return [];
     const ans = [];
     const goDFS = (node, path) => {
+        path += node.val + "->";
         if (!node.left && !node.right) {
             return ans.push(path.slice(0, -2));
         }
-        path += node.val + "->";
         node.left && goDFS(node.left, path);
         node.right && goDFS(node.right, path);
     };

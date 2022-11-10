@@ -1,8 +1,8 @@
 //https://leetcode.com/problems/hamming-distance/
 
-function hammingDistance(x: number, y: number): number {   
+function hammingDistance2(x: number, y: number): number {   
   let count = 0 
-  
+
   while(x || y){
     if((x & 1) !== (y & 1)){
       count++
@@ -15,4 +15,4 @@ function hammingDistance(x: number, y: number): number {
   return count
 };
 
-console.log(hammingDistance(3,1));
+console.log(hammingDistance2(3,1));

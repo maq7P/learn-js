@@ -12,9 +12,6 @@ function flipAndInvertImage(image) {
                 image[i][left] === 0 ? 1 : 0
             ];
         }
-        // for(let j = 0; j < image[i].length; j++){
-        //   image[i][j]  = image[i][j] == 0 ? 1 : 0
-        // } 
     }
     return image;
 }

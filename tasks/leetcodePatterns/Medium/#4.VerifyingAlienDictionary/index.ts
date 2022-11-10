@@ -22,7 +22,7 @@ function isAlienSorted(words: string[], order: string): boolean {
       if(o1 === o2){
         temp++
         continue
-      }temp
+      }
       
       if(!o2 || o1 > o2){
         return false
