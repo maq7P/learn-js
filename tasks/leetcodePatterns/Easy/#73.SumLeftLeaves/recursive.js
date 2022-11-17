@@ -19,7 +19,6 @@ function sumOfLeftLeavesRecursive(root) {
         }
     };
     recursive(root);
-    console.log(res);
     return res;
 }
 ;

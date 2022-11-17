@@ -1,6 +1,6 @@
 "use strict";
 //https://leetcode.com/problems/reverse-vowels-of-a-string/
-const vowels = ['a', 'e', 'i', 'o', 'u'];
+const vowels = ['a', 'e', 'i', 'o', 'u', "A", "E", "I", "O", "U"];
 function reverseVowels(s) {
     let left = 0, right = s.length - 1;
     const sArr = s.split("");
@@ -9,7 +9,6 @@ function reverseVowels(s) {
         const isCurRightVowels = vowels.indexOf(sArr[right]) !== -1;
         if (isCurLeftVowels && isCurRightVowels) {
             [sArr[left], sArr[right]] = [sArr[right], sArr[left]];
-            console.log("sArr: ", sArr);
             left++;
             right--;
             continue;
