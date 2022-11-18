@@ -7,18 +7,16 @@ function longestPalindrome(s: string): number {
     counter[c] ? counter[c]++ : (counter[c] = 1)
   }
 
-  console.log("counter: ", counter);
-  
-  let res = 0, maxOdd = 0
+  let res = 0, wasOddNum = false
 
   for(let key in counter){
     const val = counter[key]
-
+    
     val % 2 === 0 && (res += val)
-    val % 2 === 1 && val > maxOdd && (maxOdd = val)
+    val % 2 === 1 && (res += val - 1) && (wasOddNum = true)
   }
 
-  res += maxOdd
+  res += wasOddNum ? 1 : 0
 
   return res
 };
