@@ -9,4 +9,5 @@ function findMaxConsecutiveOnesDp(nums: number[]): number {
   
   return Math.max(...dp)
 };
+
 findMaxConsecutiveOnesDp([1])

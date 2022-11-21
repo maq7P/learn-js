@@ -8,7 +8,6 @@ function findLengthOfLCIS(nums) {
             val: nums[i]
         };
     }
-    console.log(Math.max(...(dp.map(item => item.len))));
     return Math.max(...(dp.map(item => item.len)));
 }
 ;
