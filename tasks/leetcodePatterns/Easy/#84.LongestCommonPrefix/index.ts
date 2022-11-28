@@ -1,6 +1,6 @@
 //https://leetcode.com/problems/longest-common-prefix/submissions/
 
-function longestCommonPrefix(words: string[]): string {
+function longestCommonPrefixx(words: string[]): string {
   if (!words[0] || words.length ==  1) return words[0] || "";
   let i = 0;
     

@@ -19,16 +19,12 @@ function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode
     merged = merged.next
   }
 
-  while(list1){
-    merged.next = new ListNode(list1.val)
-    list1 = list1.next
-    merged = merged.next
+  if(list1){
+    merged.next = list1
   }
 
-  while(list2){
-    merged.next = new ListNode(list2.val)
-    list2 = list2.next
-    merged = merged.next
+  if(list2){
+    merged.next = list2
   }
 
   return res.next
