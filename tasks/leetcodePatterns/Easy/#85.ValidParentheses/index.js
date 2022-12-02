@@ -5,9 +5,6 @@ function isValid(s) {
         "{": "}",
         "(": ")",
         "[": "]",
-        // "]": "[",
-        // ")": "(",
-        // "}": "{"
     };
     const stack = [];
     for (let c of s) {
@@ -22,6 +19,6 @@ function isValid(s) {
     return !stack.length;
 }
 ;
-// console.log(isValid("()"));
-// console.log(isValid("(]"));
+console.log(isValid("()"));
+console.log(isValid("(]"));
 console.log(isValid("(){}}{"));
