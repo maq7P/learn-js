@@ -1,5 +1,6 @@
 //https://leetcode.com/problems/sort-array-by-parity/
 
+//49%
 function sortArrayByParity(nums: number[]): number[] {
   const res = []
 
