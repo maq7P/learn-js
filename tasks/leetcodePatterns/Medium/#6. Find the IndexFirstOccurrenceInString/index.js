@@ -1,5 +1,7 @@
 "use strict";
 //https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
+//TODO: re
+// need to control previously simbol, how in example
 function strStr(haystack, needle) {
     if (needle.length > haystack.length)
         return -1;
@@ -26,4 +28,4 @@ function strStr(haystack, needle) {
 }
 ;
 console.log(strStr("mississippi", "issip"));
-// console.log(strStr("sadbutsad", "sad"));
+console.log(strStr("sadbutsad", "sad"));
