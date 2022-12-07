@@ -1,17 +1,17 @@
 "use strict";
 //https://leetcode.com/problems/monotonic-array/
 function isMonotonic(nums) {
-    let isIncrease = false;
-    let isDecrese = false;
+    let isIncrease = false, isDecrese = false;
     for (let i = 0; i < nums.length; i++) {
-        if (nums[i] < nums[i + 1])
+        let [first, second] = [nums[i], nums[i + 1]];
+        if (first < second)
             (isIncrease = true);
-        if (nums[i] > nums[i + 1])
+        if (first > second)
             (isDecrese = true);
-        if (isIncrease && nums[i] > nums[i + 1]) {
+        if (isIncrease && first > second) {
             return false;
         }
-        if (isDecrese && nums[i] < nums[i + 1]) {
+        if (isDecrese && first < second) {
             return false;
         }
     }
@@ -19,4 +19,4 @@ function isMonotonic(nums) {
 }
 ;
 // console.log(isMonotonic([6,5,4,4]));
-console.log(isMonotonic([2, 2, 2, 1, 4, 5]));
+// console.log(isMonotonic([2,2,2,1,4,5]));

@@ -1,6 +1,5 @@
 //https://leetcode.com/problems/remove-element/
 
-//TODO: re
 function removeElement(nums: number[], val: number): number {
   const len = nums.length;
   let count = 0;
