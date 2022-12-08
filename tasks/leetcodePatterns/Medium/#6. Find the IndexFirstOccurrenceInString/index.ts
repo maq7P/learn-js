@@ -3,31 +3,16 @@
 //TODO: re
 // need to control previously simbol, how in example
 function strStr(haystack: string, needle: string): number {
-  if(needle.length > haystack.length) return -1
+  const lh = haystack.length;
+  const ln = needle.length;
 
-  let startIdx = -1;
-  let needlePointer = 0;
-  for(let i = 0; i < haystack.length; i++){
-    if(haystack[i] === needle[needlePointer]){
-      console.log("startIdx: ", startIdx);
-      console.log("i: ", i);
-      
-      const isLastOfNeedle = needle[needlePointer] === needle[needle.length - 1]
-
-      if(needlePointer === 0 && !isLastOfNeedle){
-        startIdx = i
-      }
-    
-      if(isLastOfNeedle) return startIdx
-
-      needlePointer++
-    } else{
-      needlePointer = 0
-      startIdx = -1
+  for(let i = 0; i < (lh - ln + 1); i++){
+    if(haystack.slice(i, i + ln) === needle){
+      return i
     }
   }
 
-  return startIdx
+  return -1
 };
 
 console.log(strStr("mississippi", "issip"));
