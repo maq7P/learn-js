@@ -1,6 +1,5 @@
 "use strict";
 //https://leetcode.com/problems/remove-element/
-//TODO: re
 function removeElement(nums, val) {
     const len = nums.length;
     let count = 0;
