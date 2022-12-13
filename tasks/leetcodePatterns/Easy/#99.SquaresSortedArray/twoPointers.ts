@@ -1,6 +1,6 @@
 //https://leetcode.com/problems/squares-of-a-sorted-array/
 
-function sortedSquares(nums: number[]): number[] {
+function sortedSquares2(nums: number[]): number[] {
   const res = []
   let l = 0, r =  nums.length - 1
 
