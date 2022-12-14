@@ -10,24 +10,18 @@ function canConstruct(ransomNote: string, magazine: string): boolean {
   for(let note of magazine){
     hashMagazine[note] ? hashMagazine[note]++ : hashMagazine[note] = 1
   }
-  
-  if(!Object.keys(hashRansomNote).length){
+
+  for(let key in hashRansomNote){
+    if(!hashMagazine[key] || +hashMagazine[key] < +hashRansomNote[key]){
       return false
+    }
   }
 
-  let count = 0
-
-  for(let key in hashMagazine){
-    if(!hashRansomNote[key]) continue
-
-    if(hashMagazine[key] < hashRansomNote[key]){
-      return false
-    } else count++
-  }
-
-  return count > 0
+  return true
 };
 
-canConstruct("a", "b")
-canConstruct("aa", "aab")
+// canConstruct("a", "b")
+// canConstruct("aa", "aab")
+canConstruct("az", "ab")
+// console.log(canConstruct("ihgg", "ch"));
 // canConstruct("fihjjjjei", "hjibagacbhadfaefdjaeaebgi")
