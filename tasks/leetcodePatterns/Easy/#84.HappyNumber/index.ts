@@ -1,18 +1,21 @@
 const isHappy = (n: any, hash = {}): any => {
   // TODO: re
-  // if (n !== 1) {
-  //     if (hash[n]) {
-  //       return false
-  //     }
+  const map: any = {};
+  let tmp: number = 0;
 
-  //     hash[n] = 1
+  if (n < 1) return false;
 
-  //     const a = n.toString().split("");
-  //     const b = a.map(x => parseInt(x))
-  //     const sum = b.reduce((total, x) => total + x**2, 0)
+  while (n !== 1 && !map[n]) {
+    map[n] = true;
+    tmp = 0;
 
-  //     return isHappy(sum, hash)
-  // }
+    while (n > 0) {
+      tmp += Math.pow(n % 10, 2);
+      n = Math.floor(n / 10);
+    }
 
-  return true
+    n = tmp;
+  }
+
+  return n === 1;
 };
